@@ -20,9 +20,10 @@ Ideal for development cluster on a laptop with at least 4GB of memory.
 # 3. Getting Started
 1. [Download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. [Download and install Vagrant](http://www.vagrantup.com/downloads.html).
-3. Run ```vagrant box add centos65 http://files.brianbirkinbine.com/vagrant-centos-65-i386-minimal.box```
-4. Git clone this project, and change directory (cd) into this project (directory).
-5. [Download Hadoop 2.7.3 into the /resources directory](http://apache.crihan.fr/dist/hadoop/common/stable/hadoop-2.7.3.tar.gz)
+3. `vagrant plugin install vagrant-hostmanager`
+4. Run ```vagrant box add centos65 http://files.brianbirkinbine.com/vagrant-centos-65-i386-minimal.box```
+5. Git clone this project, and change directory (cd) into this project (directory).
+6. [Download Hadoop 2.7.3 into the /resources directory](http://apache.crihan.fr/dist/hadoop/common/stable/hadoop-2.7.3.tar.gz)
 7. [Download Java 1.8 into the /resources directory](http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u121-linux-i586.tar.gz)
 8. Run ```vagrant up``` to create the VM.
 9. Run ```vagrant ssh``` to get into your VM.
