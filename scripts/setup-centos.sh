@@ -8,6 +8,11 @@ function disableFirewall {
 	chkconfig iptables off
 }
 
+function installTools {
+    yum -y install vim zip unzip htop tmux
+}
+
 echo "setup centos"
 
 disableFirewall
+installTools

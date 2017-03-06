@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #java
-JAVA_ARCHIVE=jdk-8u25-linux-i586.tar.gz
+JAVA_ARCHIVE=jdk-8u121-linux-i586.tar.gz
 #hadoop
 HADOOP_PREFIX=/usr/local/hadoop
 HADOOP_CONF=$HADOOP_PREFIX/etc/hadoop
-HADOOP_VERSION=hadoop-2.6.0
+HADOOP_VERSION=hadoop-2.7.3
 HADOOP_ARCHIVE=$HADOOP_VERSION.tar.gz
-HADOOP_MIRROR_DOWNLOAD=../resources/hadoop-2.6.0.tar.gz
+HADOOP_MIRROR_DOWNLOAD=../resources/hadoop-2.7.3.tar.gz
 HADOOP_RES_DIR=/vagrant/resources/hadoop
 #spark
 SPARK_VERSION=spark-1.1.1
