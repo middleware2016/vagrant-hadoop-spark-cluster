@@ -3,11 +3,11 @@ vagrant-hadoop-spark-cluster
 
 # 1. Introduction
 ### Vagrant project to spin up a cluster of 4, 32-bit CentOS6.5 Linux virtual machines with Hadoop v2.7.3.
-Ideal for development cluster on a laptop with at least 4GB of memory.
+Ideal for development cluster on a laptop with at least 4.5 GB of memory.
 
 1. node1 : HDFS NameNode + DataNode + YARN NodeManager
 2. node2 : YARN ResourceManager + JobHistoryServer + ProxyServer + DataNode + YARN NodeManager
-3. node3 : HDFS DataNode + YARN NodeManager + Spark Slave
+3. node3 : HDFS DataNode + YARN NodeManager
 
 # 2. Prerequisites and Gotchas to be aware of
 1. At least 1.5GB memory for each VM node. Default script is for 3 nodes, so you need 3GB for the nodes, in addition to the memory for your host machine.
@@ -22,8 +22,8 @@ Ideal for development cluster on a laptop with at least 4GB of memory.
 3. `vagrant plugin install vagrant-hostmanager`
 4. Run ```vagrant box add centos65 http://files.brianbirkinbine.com/vagrant-centos-65-i386-minimal.box```
 5. Git clone this project, and change directory (cd) into this project (directory).
-6. [Download Hadoop 2.7.3 into the /resources directory](http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz)
-7. [Download Java JDK 8u121 into the /resources directory](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+6. [Download Hadoop 2.7.3 (hadoop-2.7.3.tar.gz) into the /resources directory](http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz)
+7. [Download Java JDK 8u121 (jdk-8u121-linux-i586.tar.gz) into the /resources directory](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 8. Run ```vagrant up``` to create the VM.
 9. Run ```vagrant ssh``` to get into your VM.
 10. Run ```vagrant destroy``` when you want to destroy and get rid of the VM.
@@ -36,27 +36,22 @@ You need to modify the scripts to adapt the VM setup to your environment.
 
 2. ./Vagrantfile  
 To add/remove slaves, change the number of nodes:  
-line 5: ```numNodes = 4```  
+line 5: ```numNodes = 3```  
 To modify VM memory change the following line:  
-line 13: ```v.customize ["modifyvm", :id, "--memory", "1024"]```  
+line 13: ```v.customize ["modifyvm", :id, "--memory", "1500"]```  
 3. /scripts/common.sh  
 To use a different version of Java, change the following line depending on the version you downloaded to /resources directory.  
-line 4: JAVA_ARCHIVE=jdk-8u25-linux-i586.tar.gz  
+line 4: JAVA_ARCHIVE=jdk-8u121-linux-i586.tar.gz  
 To use a different version of Hadoop you've already downloaded to /resources directory, change the following line:  
-line 8: ```HADOOP_VERSION=hadoop-2.6.0```  
+line 8: ```HADOOP_VERSION=hadoop-2.7.3```  
 To use a different version of Hadoop to be downloaded, change the remote URL in the following line:  
 line 10: ```HADOOP_MIRROR_DOWNLOAD=http://apache.crihan.fr/dist/hadoop/common/stable/hadoop-2.6.0.tar.gz```  
 
 3. /scripts/setup-java.sh  
 To install from Java downloaded locally in /resources directory, if different from default version (8u121), change the version in the following line:  
-line 18: ```ln -s /usr/local/jdk1.8.0_25 /usr/local/java```  
+line 18: ```ln -s /usr/local/jdk1.8.0_121 /usr/local/java```  
 To modify version of Java to be installed from remote location on the web, change the version in the following line:  
-line 12: ```yum install -y jdk-8u25-linux-i586```  
-
-4. /scripts/setup-centos-ssh.sh  
-To modify the version of sshpass to use, change the following lines within the function installSSHPass():  
-line 23: ```wget http://pkgs.repoforge.org/sshpass/sshpass-1.05-1.el6.rf.i686.rpm```  
-line 24: ```rpm -ivh sshpass-1.05-1.el6.rf.i686.rpm```  
+line 12: ```yum install -y jdk-8u121-linux-i586```
 
 
 # 5. Post Provisioning
@@ -77,7 +72,7 @@ From the host machine:
 Run the following command to make sure you can run a MapReduce job.
 
 ```
-yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar pi 2 100
+yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar pi 2 100
 ```
 
 # 6. Web UI
@@ -89,7 +84,7 @@ You can check the following URLs to monitor the Hadoop daemons.
 
 # 7. References
 This project was put together with great pointers from all around the internet. All references made inside the files themselves.
-Primaily this project is forked from [Jee Vang's vagrant project](https://github.com/vangj/vagrant-hadoop-2.4.1-spark-1.0.1)
+Primarily this project is forked from [Jee Vang's vagrant project](https://github.com/vangj/vagrant-hadoop-2.4.1-spark-1.0.1)
 
 # 8. Copyright Stuff
 Copyright 2014 Maloy Manna
