@@ -1,0 +1,3 @@
+.vagrant
+resources/hadoop-*
+resources/jdk-*
